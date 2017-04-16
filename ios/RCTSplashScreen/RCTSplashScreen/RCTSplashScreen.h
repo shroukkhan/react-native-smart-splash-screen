@@ -1,5 +1,5 @@
-#import <React/RCTBridgeModule.h>
-#import <React/RCTRootView.h>
+#import "RCTBridgeModule.h"
+#import "RCTRootView.h"
 
 @interface RCTSplashScreen : NSObject <RCTBridgeModule>
 
