@@ -1,15 +1,66 @@
 {
-  "name": "react-native-smart-splash-screen",
-  "version": "2.3.3",
+  "_args": [
+    [
+      {
+        "raw": "react-native-smart-splash-screen@^2.3.3",
+        "scope": null,
+        "escapedName": "react-native-smart-splash-screen",
+        "name": "react-native-smart-splash-screen",
+        "rawSpec": "^2.3.3",
+        "spec": ">=2.3.3 <3.0.0",
+        "type": "range"
+      },
+      "/Users/shroukkhan/works/SagaMobile"
+    ]
+  ],
+  "_from": "react-native-smart-splash-screen@>=2.3.3 <3.0.0",
+  "_id": "react-native-smart-splash-screen@2.3.4",
+  "_inCache": true,
+  "_location": "/react-native-smart-splash-screen",
+  "_nodeVersion": "6.7.0",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/react-native-smart-splash-screen-2.3.4.tgz_1496018343899_0.0012174169532954693"
+  },
+  "_npmUser": {
+    "name": "cyqresig",
+    "email": "moonsunfall@aliyun.com"
+  },
+  "_npmVersion": "3.10.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "react-native-smart-splash-screen@^2.3.3",
+    "scope": null,
+    "escapedName": "react-native-smart-splash-screen",
+    "name": "react-native-smart-splash-screen",
+    "rawSpec": "^2.3.3",
+    "spec": ">=2.3.3 <3.0.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/react-native-smart-splash-screen/-/react-native-smart-splash-screen-2.3.4.tgz",
+  "_shasum": "0c44076941c897cd4ae476f486d95e01a82cd013",
+  "_shrinkwrap": null,
+  "_spec": "react-native-smart-splash-screen@^2.3.3",
+  "_where": "/Users/shroukkhan/works/SagaMobile",
+  "author": {
+    "name": "HISAME SHIZUMARU"
+  },
+  "bugs": {
+    "url": "https://github.com/react-native-component/react-native-smart-splash-screen/issues"
+  },
+  "dependencies": {},
   "description": "A smart splash screen for React Native apps",
-  "main": "SplashScreen.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "0c44076941c897cd4ae476f486d95e01a82cd013",
+    "tarball": "https://registry.npmjs.org/react-native-smart-splash-screen/-/react-native-smart-splash-screen-2.3.4.tgz"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/react-native-component/react-native-smart-splash-screen.git"
-  },
+  "gitHead": "120d991ce779ec09f4d189d44499a109a37bf91e",
+  "homepage": "https://github.com/react-native-component/react-native-smart-splash-screen#readme",
   "keywords": [
     "react-native",
     "smart",
@@ -18,13 +69,26 @@
     "splashscreen",
     "component"
   ],
-  "author": "HISAME SHIZUMARU",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/react-native-component/react-native-smart-splash-screen/issues"
-  },
-  "homepage": "https://github.com/react-native-component/react-native-smart-splash-screen#readme",
+  "main": "SplashScreen.js",
+  "maintainers": [
+    {
+      "name": "cyqresig",
+      "email": "moonsunfall@aliyun.com"
+    }
+  ],
+  "name": "react-native-smart-splash-screen",
+  "optionalDependencies": {},
   "peerDependencies": {
     "react-native": ">=0.40.0"
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/react-native-component/react-native-smart-splash-screen.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "2.3.4"
 }
