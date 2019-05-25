@@ -3,6 +3,8 @@ package com.reactnativecomponent.splashscreen;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.os.Build;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
@@ -21,6 +23,7 @@ public class RCTSplashScreen {
     public static final int UIAnimationNone = 0;
     public static final int UIAnimationFade = 1;
     public static final int UIAnimationScale = 2;
+    private static final String TAG = "RCTSplashScreen";
 
     private static Dialog dialog;
     private static ImageView imageView;
@@ -43,13 +46,13 @@ public class RCTSplashScreen {
         if (activity == null) return;
         wr_activity = new WeakReference<>(activity);
         final int drawableId = getImageId();
-        if ((dialog != null && dialog.isShowing())||(drawableId == 0)) {
+        if ((dialog != null && dialog.isShowing()) || (drawableId == 0)) {
             return;
         }
         activity.runOnUiThread(new Runnable() {
             public void run() {
 
-                if(!getActivity().isFinishing()) {
+                if (!getActivity().isFinishing()) {
                     Context context = getActivity();
                     imageView = new ImageView(context);
 
@@ -77,17 +80,17 @@ public class RCTSplashScreen {
         });
     }
 
-    public static void removeSplashScreen(Activity activity, final int animationType,final int duration) {
+    public static void removeSplashScreen(Activity activity, final int animationType, final int duration) {
         if (activity == null) {
             activity = getActivity();
-            if(activity == null) return;
+            if (activity == null) return;
         }
         activity.runOnUiThread(new Runnable() {
             public void run() {
                 if (dialog != null && dialog.isShowing()) {
                     AnimationSet animationSet = new AnimationSet(true);
 
-                    if(animationType == UIAnimationScale) {
+                    if (animationType == UIAnimationScale) {
                         AlphaAnimation fadeOut = new AlphaAnimation(1, 0);
                         fadeOut.setDuration(duration);
                         animationSet.addAnimation(fadeOut);
@@ -95,28 +98,28 @@ public class RCTSplashScreen {
                         ScaleAnimation scale = new ScaleAnimation(1, 1.5f, 1, 1.5f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.65f);
                         scale.setDuration(duration);
                         animationSet.addAnimation(scale);
-                    }
-                    else if(animationType == UIAnimationFade) {
+                    } else if (animationType == UIAnimationFade) {
                         AlphaAnimation fadeOut = new AlphaAnimation(1, 0);
                         fadeOut.setDuration(duration);
                         animationSet.addAnimation(fadeOut);
-                    }
-                    else {
+                    } else {
                         AlphaAnimation fadeOut = new AlphaAnimation(1, 0);
                         fadeOut.setDuration(0);
                         animationSet.addAnimation(fadeOut);
                     }
 
-                    final View view = ((ViewGroup)dialog.getWindow().getDecorView()).getChildAt(0);
+                    final View view = ((ViewGroup) dialog.getWindow().getDecorView()).getChildAt(0);
                     view.startAnimation(animationSet);
 
                     animationSet.setAnimationListener(new Animation.AnimationListener() {
                         @Override
                         public void onAnimationStart(Animation animation) {
                         }
+
                         @Override
                         public void onAnimationRepeat(Animation animation) {
                         }
+
                         @Override
                         public void onAnimationEnd(Animation animation) {
                             view.post(new Runnable() {
@@ -134,10 +137,19 @@ public class RCTSplashScreen {
         });
     }
 
+    private static String getOrientation() {
+        return (Build.MANUFACTURER + " - " + Build.MODEL).compareTo("Masscom - TK-E101C") == 0 ? "LANDSCAPE" : "PORTRAIT";
+    }
+
     private static int getImageId() {
         int drawableId = getActivity().getResources().getIdentifier("splash", "drawable", getActivity().getClass().getPackage().getName());
-        if (drawableId == 0) {
-            drawableId = getActivity().getResources().getIdentifier("splash", "drawable", getActivity().getPackageName());
+        if (getOrientation().compareTo("LANDSCAPE") == 0) {
+            drawableId = getActivity().getResources().getIdentifier("splash_horizontal", "drawable", getActivity().getPackageName());
+            Log.e(TAG, "Drawable id for landscape is 2 : " + drawableId);
+        } else {
+            if (drawableId == 0) {
+                drawableId = getActivity().getResources().getIdentifier("splash", "drawable", getActivity().getPackageName());
+            }
         }
         return drawableId;
     }
