@@ -1,5 +1,6 @@
 package com.reactnativecomponent.splashscreen;
 
+import android.util.Log;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.JavaScriptModule;
 import com.facebook.react.bridge.NativeModule;
@@ -12,6 +13,12 @@ import java.util.List;
 
 
 public class RCTSplashScreenPackage implements ReactPackage {
+    protected static String LandescapeMode = "";
+
+    public RCTSplashScreenPackage(String landescapeMode) {
+        Log.e("RCTSplashScreenPackage","Setting LandescapeMode to : " + landescapeMode.toString());
+        LandescapeMode = landescapeMode;
+    }
 
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {

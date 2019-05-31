@@ -27,6 +27,7 @@ public class RCTSplashScreen {
 
     private static Dialog dialog;
     private static ImageView imageView;
+    private static String ORIETNATION = "";
 
     private static WeakReference<Activity> wr_activity;
 
@@ -34,7 +35,8 @@ public class RCTSplashScreen {
         return wr_activity.get();
     }
 
-    public static void openSplashScreen(Activity activity) {
+    public static void openSplashScreen(Activity activity, String orientation) {
+        ORIETNATION = orientation;
         openSplashScreen(activity, false);
     }
 
@@ -138,7 +140,13 @@ public class RCTSplashScreen {
     }
 
     private static String getOrientation() {
-        return (Build.MANUFACTURER + " - " + Build.MODEL).compareTo("Masscom - TK-E101C") == 0 ? "LANDSCAPE" : "PORTRAIT";
+        Log.e("RCTSplashScreen","getOrientation : " +  ORIETNATION);
+        return ORIETNATION;
+//        String[] landscapes = RCTSplashScreenPackage.LandescapeMode.split(",");
+//        Log.e("RCTSplashScreen","Setting LandescapeMode to : " +  RCTSplashScreenPackage.LandescapeMode);
+//        String model = Build.MANUFACTURER + " - " + Build.MODEL;
+//        Log.e("RCTSplashScreen","Current model is  : " + model);
+//        return java.util.Arrays.asList(landscapes).indexOf(model) != -1?"LANDSCAPE" :"PORTRAIT";
     }
 
     private static int getImageId() {
