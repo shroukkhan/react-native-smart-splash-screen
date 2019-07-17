@@ -3,6 +3,7 @@ package com.reactnativecomponent.splashscreen;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.util.Log;
 import android.view.View;
@@ -140,13 +141,9 @@ public class RCTSplashScreen {
     }
 
     private static String getOrientation() {
-        Log.e("RCTSplashScreen","getOrientation : " +  ORIETNATION);
-        return ORIETNATION;
-//        String[] landscapes = RCTSplashScreenPackage.LandescapeMode.split(",");
-//        Log.e("RCTSplashScreen","Setting LandescapeMode to : " +  RCTSplashScreenPackage.LandescapeMode);
-//        String model = Build.MANUFACTURER + " - " + Build.MODEL;
-//        Log.e("RCTSplashScreen","Current model is  : " + model);
-//        return java.util.Arrays.asList(landscapes).indexOf(model) != -1?"LANDSCAPE" :"PORTRAIT";
+        SharedPreferences preferences =  getActivity().getSharedPreferences("OkkamiPreferences", Context.MODE_PRIVATE);
+        String landscapeEnabled = preferences.getString("deviceLandscape","false");
+        return landscapeEnabled.equals("true")?"LANDSCAPE":"PORTRAIT";
     }
 
     private static int getImageId() {
