@@ -1,4 +1,5 @@
 
+#define contains(str1, str2) ([str1 rangeOfString: str2 ].location != NSNotFound)
 #import "RCTSplashScreen.h"
 
 static RCTRootView *rootView = nil;
@@ -22,7 +23,23 @@ RCT_EXPORT_MODULE(SplashScreen)
 
     UIImageView *view = [[UIImageView alloc]initWithFrame:[UIScreen mainScreen].bounds];
     
-    view.image = [UIImage imageNamed:imageName];
+    BOOL flip = FALSE;
+    if(contains(imageName,@"_right") ){
+        flip = TRUE;
+        imageName = [imageName stringByReplacingOccurrencesOfString:@"_right" withString:@""];
+    }else{
+        
+        imageName = [imageName stringByReplacingOccurrencesOfString:@"_false" withString:@""];
+    }
+    
+    UIImage* img = [UIImage imageNamed:imageName];
+    if(flip){
+        img = [UIImage imageWithCGImage:img.CGImage
+                            scale:img.scale
+                      orientation:UIImageOrientationUp];
+    }
+    
+    view.image = img;
     view.contentMode = UIViewContentModeScaleAspectFill;
 
     [[NSNotificationCenter defaultCenter] removeObserver:rootView  name:RCTContentDidAppearNotification object:rootView];
