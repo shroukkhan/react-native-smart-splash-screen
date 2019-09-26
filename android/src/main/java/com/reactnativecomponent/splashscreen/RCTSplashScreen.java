@@ -37,6 +37,7 @@ public class RCTSplashScreen {
     }
 
     public static void openSplashScreen(Activity activity, String orientation) {
+        Log.e(TAG,"Calling openSplashScreen with : " + orientation);
         ORIETNATION = orientation;
         openSplashScreen(activity, false);
     }
@@ -143,11 +144,16 @@ public class RCTSplashScreen {
     private static String getOrientation() {
         SharedPreferences preferences =  getActivity().getSharedPreferences("OkkamiPreferences", Context.MODE_PRIVATE);
         String landscapeEnabled = preferences.getString("deviceLandscape","false");
-        return landscapeEnabled.equals("true")?"LANDSCAPE":"PORTRAIT";
+        String mode =  landscapeEnabled.equals("false") ? "PORTRAIT" : "LANDSCAPE";
+        if(mode.equals("PORTRAIT")){
+          return ORIETNATION;
+        }else
+          return mode;
     }
 
     private static int getImageId() {
         int drawableId = getActivity().getResources().getIdentifier("splash", "drawable", getActivity().getClass().getPackage().getName());
+      Log.e(TAG, "Current mode is : " + getOrientation());
         if (getOrientation().compareTo("LANDSCAPE") == 0) {
             drawableId = getActivity().getResources().getIdentifier("splash_horizontal", "drawable", getActivity().getPackageName());
             Log.e(TAG, "Drawable id for landscape is 2 : " + drawableId);
@@ -156,6 +162,7 @@ public class RCTSplashScreen {
                 drawableId = getActivity().getResources().getIdentifier("splash", "drawable", getActivity().getPackageName());
             }
         }
+      Log.e(TAG, "drawableId = " + drawableId);
         return drawableId;
     }
 
